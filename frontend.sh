@@ -1,3 +1,9 @@
+## shellcheck disable=SC2006
+#if [ `id -u` -ne 0 ]
+#then
+#    echo "You Must be use root user"
+#    exit 1
+#fi
 yum install nginx -y &>>/tmp/run.log
 
 systemctl enable nginx 
