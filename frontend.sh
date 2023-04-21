@@ -4,17 +4,33 @@
 #    echo "You Must be use root user"
 #    exit 1
 #fi
-yum install nginx -y &>>/tmp/run.log
+script=$(realpath "$0")
+script_path=$(dirname "$script")
+source ${script_path}/common.sh
 
-systemctl enable nginx 
 
-rm -rf /usr/share/nginx/html/* &>>/tmp/run.log
+func_print_head "Install Nginx"
+yum install nginx -y &>>$log_file
+func_stat_check $?
 
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>/tmp/run.log
+func_print_head "Copy roboshop Config file"
+cp roboshop.conf /etc/nginx/default.d/roboshop.conf &>>$log_file
+func_stat_check $?
 
-cd /usr/share/nginx/html &>>/tmp/run.log
-unzip /tmp/frontend.zip &>>/tmp/run.log
+func_print_head "Clean Old App content"
+rm -rf /usr/share/nginx/html/* &>>$log_file
+func_stat_check $?
 
-cp /src/robo.conf /etc/nginx/default.d/roboshop.conf &>>/tmp/run.log
+func_print_head "Download App Content"
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
+func_stat_check $?
 
-systemctl restart nginx &>>/tmp/run.log
+func_print_head "Extracting App Content"
+cd /usr/share/nginx/html &>>$log_file
+unzip /tmp/frontend.zip &>>$log_file
+func_stat_check $?
+
+func_print_head "Start Nginx"
+systemctl enable nginx &>>$log_file
+systemctl restart nginx &>>$log_file
+func_stat_check $?
