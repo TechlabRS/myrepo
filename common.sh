@@ -24,7 +24,7 @@ func_schema_setup() {
   if [ "$schema_setup" == "mongo" ]; then
     func_print_head "Copy MongoDB repo"
     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
-    func_st_chk $?
+    func_stat_check $?
 
     func_print_head "Install MongoDB Client"
     yum install mongodb-org-shell -y &>>$$mylog
