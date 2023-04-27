@@ -5,4 +5,4 @@ source ${script_path}/common.sh
 component=dispatch
 
 func_golang
-func_print_head "your application $component successfully completed"
+func_print_head "your application ${component} successfully completed"
