@@ -4,11 +4,11 @@ Description=Payment Service
 [Service]
 User=root
 WorkingDirectory=/app
-Environment=CART_HOST=dev-cart.pearlwebsolutions.in
+Environment=CART_HOST=dev-cart.uknowme.tech
 Environment=CART_PORT=8080
-Environment=USER_HOST=user-cart.pearlwebsolutions.in
+Environment=USER_HOST=dev-user.uknowme.tech
 Environment=USER_PORT=8080
-Environment=AMQP_HOST=dev-rabbitmq.pearlwebsolutions.in
+Environment=AMQP_HOST=dev-rabbitmq.uknowme.tech
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
 

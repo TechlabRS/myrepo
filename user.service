@@ -3,8 +3,8 @@ Description = User Service
 [Service]
 User=roboshop
 Environment=MONGO=true
-Environment=REDIS_HOST=dev-redis.pearlwebsolutions.in
-Environment=MONGO_URL="mongodb://dev-mongodb-pearlwebsolutions.in:27017/users"
+Environment=REDIS_HOST=dev-redis.uknowme.tech
+Environment=MONGO_URL="mongodb://dev-mongodb.uknowme.tech:27017/users"
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=user
 
