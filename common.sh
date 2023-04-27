@@ -144,9 +144,9 @@ func_golang() {
   func_app_prereq
   
   func_print_head "Build for ${component} things"
-  go mod init dispatch
-  go get 
-  go build
+  go mod init dispatch &>>$log_file
+  go get &>>$log_file
+  go build &>>$log_file
   func_stat_check $?
   
   func_systemd_setup
